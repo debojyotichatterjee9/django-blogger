@@ -97,8 +97,11 @@ def posts(request):
 
 
 def post_detail(request, slug):
+    identified_post =  next(post for post in all_posts if post['slug'] == slug)
     try:
         # this is a shortcut method
-        return render(request, "blog/post-detail.html")
+        return render(request, "blog/post-detail.html", {
+            "post": identified_post
+        })
     except:
         raise Http404()
