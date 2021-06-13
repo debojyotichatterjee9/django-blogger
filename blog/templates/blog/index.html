@@ -17,7 +17,7 @@ Django Writer
 {% block content %}
 <section id="welcome">
     <header>
-        <img src="" alt="The author of this blog.">
+        <img src='{% static "blog/images/default_avatar.png" %}' alt="The author of this blog.">
         <h2>Fred's Blog'</h2>
     </header>
     <p>Hi, I am Fred and I love to blog about tech and the world!</p>
@@ -26,18 +26,7 @@ Django Writer
     <h2>My Latest Thoughts</h2>
 
     <ul>
-        <li>
-            <article class="post">
-                <a href="#">
-                    <img src="" alt="Anything random">
-                    <div class="post__content">
-                        <h3>Post Title</h3>
-                        <p>Lorem ipsum dolor, sit
-                            amet consectetur adipisicing elit. Ex labore voluptate...</p>
-                    </div>
-                </a>
-            </article>
-        </li>
+        {% include "blog/includes/post.html" %}
     </ul>
 </section>
 

@@ -1,0 +1,13 @@
+{% load static %}
+<li>
+  <article class="post">
+      <a href='{% url "blog-detail" "the-mountains" %}'>
+          <img src='{% static "blog/images/mountains.jpg" %}' alt="Anything random">
+          <div class="post__content">
+              <h3>Post Title</h3>
+              <p>Lorem ipsum dolor, sit
+                  amet consectetur adipisicing elit. Ex labore voluptate...</p>
+          </div>
+      </a>
+  </article>
+</li>
