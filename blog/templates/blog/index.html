@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
+
+{% load static %}
+
+{% block link_script %}
+<link rel="stylesheet" href='{% static "blog/blog.css" %}'>
+<link rel="stylesheet" href='{% static "blog/post.css" %}'>
+{% endblock %}
+
+
 {% block page_title %}
 Django Writer
 {% endblock %}
 
+
 {% block content %}
-{% include "blog/includes/header.html" with link_label="All Posts" %}
 <section id="welcome">
     <header>
         <img src="" alt="The author of this blog.">
@@ -13,7 +22,7 @@ Django Writer
     </header>
     <p>Hi, I am Fred and I love to blog about tech and the world!</p>
 </section>
-<section id="latest-posts">
+<section class="container-sm" id="latest-posts">
     <h2>My Latest Thoughts</h2>
 
     <ul>
