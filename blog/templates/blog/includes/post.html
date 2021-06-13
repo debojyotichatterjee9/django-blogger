@@ -1,13 +1,14 @@
-{% load static %}
 <li>
-  <article class="post">
-      <a href='{% url "blog-detail" "the-mountains" %}'>
-          <img src='{% static "blog/images/mountains.jpg" %}' alt="Anything random">
-          <div class="post__content">
-              <h3>Post Title</h3>
-              <p>Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Ex labore voluptate...</p>
-          </div>
+    <article class="post">
+      <a href='{% url "blog-detail" post.slug %}'>
+        <img src="{{ post.image.url }}" alt="{{ post.title }}"
+        />
+        <div class="post__content">
+          <h3>{{ post.title }}</h3>
+          <p>
+            {{ post.excerpt }}
+          </p>
+        </div>
       </a>
-  </article>
-</li>
+    </article>
+  </li>
