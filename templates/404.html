@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Not Found
+{% endblock %}
+
+{% block content %}
+{% include "challenges/includes/header.html" with link_label="Back to Index"%}
+<table>
+    <td>
+        <tr>
+            <h1 style="color: rgb(192, 24, 52)">The requested value was not found!!!</h1>
+        </tr>
+    </td>
+</table>
+{% endblock %}
