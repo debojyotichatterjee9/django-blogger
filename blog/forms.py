@@ -5,7 +5,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ["guest_name", "guest_email", "comment"]
-        lablles = {
+        labels = {
             "guest_name": "Your Name",
             "guest_email": "Your Email"
         }
