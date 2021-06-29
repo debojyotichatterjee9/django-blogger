@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.deletion import PROTECT
+from django.db.models.deletion import CASCADE, PROTECT
 from django.db.models.fields import SlugField
 from django.utils.text import slugify
 from django.db.models.fields.files import ImageField
@@ -38,3 +38,14 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    guest_name = models.CharField(max_length=50)
+    guest_email = models.EmailField(null=True)
+    date = models.DateField(auto_now=True)
+    comment = models.TextField(max_length=300)
+    post = models.ForeignKey(Post, on_delete=CASCADE, related_name="comments")
+
+    def __str__(self):
+        return f"{self.guest_name} - {self.guest_email} - {self.date}"
