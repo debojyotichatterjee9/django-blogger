@@ -2,24 +2,35 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, HttpResponseNotFound
 from django.http.response import Http404
 from datetime import date
+from django.views.generic import ListView
 from .models import Post
 
-
+# custom function
 def get_date(post):
     return post['date']
+
 # landing page
-def home(request):
-    all_posts = Post.objects.all().order_by("-date")[:3]
-    try:
-        # this is a shortcut method
-        return render(request, "blog/index.html", {
-            "posts": all_posts
-        })
-    except Exception as e:
-        return HttpResponseNotFound(e)
+class HomePageView(ListView):
+    template_name = "blog/index.html"
+    model = Post
+    ordering = ["-date"]
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        query_set = super().get_queryset()
+        data = query_set[:2]
+        return data
+
 
 # post list
+class AllPostsView(ListView):
+    template_name = "blog/all-posts.html"
+    model = Post
+    ordering = ["-date"]
+    context_object_name = "posts"
 
+    def get_queryset(self):
+        return super().get_queryset()
 
 def posts(request):
     try:
@@ -30,9 +41,8 @@ def posts(request):
     except:
         raise Http404()
 
+
 # post detail
-
-
 def post_detail(request, slug):
     identified_post =  Post.objects.get(slug=slug)
     print(identified_post)
