@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
 from django.db.models.fields import SlugField
 from django.utils.text import slugify
+from django.urls import reverse
 from django.db.models.fields.files import ImageField
 from django.core.validators import MinLengthValidator
 
@@ -34,6 +35,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.author} - {self.date}"
+
+    def get_absolute_url(self):
+        return reverse("blog-detail", args=[self.slug])
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

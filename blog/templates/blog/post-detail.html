@@ -10,6 +10,14 @@
 {% endblock %}
 
 {% block content %}
+
+{% if comment_form.errors %}
+<div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those <a href="#comment-form">fields</a> below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}
+
 <section id="summary">
     <h2>{{ post.title }}</h2>
     <div>
@@ -28,12 +36,24 @@
     {{ post.content|linebreaks }}
 </main>
 
+<section id="comments">
+    <ul>
+        {% for comment in comments %}
+        <li>
+            <h3 id="guest_name">{{ comment.guest_name }}</h3>
+            <p id="date">{{ comment.date }}</p>
+            <p id="guest_comment">{{ comment.comment|linebreaks }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
 <section id="comment-form">
     <h2>Comments</h2>
-    <form>
+    <form method="POST", action="{{post.get_absolute_url}}">
         {% csrf_token %}
         {% for field in comment_form %}
-        <div class="form-control">
+        <div class="form-control {% if field.errors %}invalid{% endif %}">
             {{ field.label_tag }}
             {{ field }}
             {{ field.errors }}

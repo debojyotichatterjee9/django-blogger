@@ -124,22 +124,22 @@ body {
     list-style: none;
     margin: 0.5rem 0;
     padding: 0;
-    color: #d6000b;
+    color: #842029;;
   }
   
   .invalid label {
-    color: #d6000b;
+    color: #842029;;
   }
   
   .invalid input,
   .invalid textarea {
-    border-color: #d6000b;
+    border-color: #842029;;
     background-color: #ffe6e7;
   }
   
   #alert {
     margin: 8rem auto 3rem auto;
-    border: 1px solid #d6000b;
+    border: 1px solid #842029;
     background-color: #ffe6e7;
     padding: 1rem;
     width: 90%;
@@ -148,10 +148,10 @@ body {
   
   #alert a {
     text-decoration: none;
-    border: 1px solid #d6000b;
-    background-color: #d6000b;
+    border: 1px solid #842029;
+    background-color: #842029;
     color: white;
-    padding: 0.25rem 1.5rem;
+    padding: 0.10rem 0.10rem;
     border-radius: 6px;
   }
   
@@ -180,7 +180,7 @@ body {
     border-bottom: none;
   }
   
-  #comments h2 {
+  #comments h3 {
     color: #464646;
   }
   
