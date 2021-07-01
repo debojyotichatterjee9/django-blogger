@@ -15,7 +15,7 @@
 <div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
     <strong>Holy guacamole!</strong> You should check in on some of those <a href="#comment-form">fields</a> below.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+</div>
 {% endif %}
 
 <section id="summary">
@@ -26,11 +26,20 @@
         {% endfor %}
     </div>
 
-<div id="read-later">
-    <button>
-        Read Later
-    </button>
-</div>
+    <div id="read-later">
+        <form method="POST" action="{% url 'read-later' %}">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <input type="hidden" name="post_slug" value="{{ post.slug }}">
+            <button>
+                {% if is_saved_for_later %}
+                Addded to Collection
+                {% else %}
+                Add to Collection
+                {% endif %}
+            </button>
+        </form>
+    </div>
 
     <article>
         <img src="{{ post.image.url }}" alt="{{ post.title }}" />
@@ -57,7 +66,7 @@
 
 <section id="comment-form">
     <h2>Comments</h2>
-    <form method="POST", action="{{post.get_absolute_url}}">
+    <form method="POST" , action="{{post.get_absolute_url}}">
         {% csrf_token %}
         {% for field in comment_form %}
         <div class="form-control {% if field.errors %}invalid{% endif %}">

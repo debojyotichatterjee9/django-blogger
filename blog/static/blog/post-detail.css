@@ -64,6 +64,7 @@ body {
   #read-later button {
     background-color: transparent;
     border: 1px solid white;
+    border-radius: .25rem;
     padding: 0.5rem 2rem;
     font: inherit;
     color: white;
@@ -72,7 +73,7 @@ body {
   
   #read-later button:hover,
   #read-later button:active {
-    background-color: white;
+    background-color: #ffc107;
     color: #390281;
   }
   

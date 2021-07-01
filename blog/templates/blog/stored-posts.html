@@ -7,15 +7,18 @@
 {% endblock %}
 
 {% block page_title %}
-All My Posts
+Saved Posts
 {% endblock %}
 
 {% block content %}
 <section id="all-posts">
-    <h2>All Posts</h2>
+    <h2>My Collected Posts</h2>
 
+    {% if not posts_saved %}
+    <h2>Oops! Your reading list seems to be clean!</h2>
+    {% endif %}
     <ul>
-        {% for post in all_posts %}
+        {% for post in posts %}
         {% include "blog/includes/post.html" %}
         {% endfor %}
     </ul>
